@@ -34,10 +34,9 @@ const w9_ = Array.from(
 const gradeByKanjis = [[], w1_, w2_, w3_, w4_, w5_, w6_, w7_, w8_, w9_];
 const kanjiGrade = {};
 for (let level = 1; level < gradeByKanjis.length; level++) {
-  for (let i = 0; i < gradeByKanjis[level].length; i++) {
-    const kanji = gradeByKanjis[level][i];
+  gradeByKanjis[level].forEach(kanji => {
     kanjiGrade[kanji] = level;
-  }
+  });
 }
 
 function getGrade(word) {
