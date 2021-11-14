@@ -44,7 +44,7 @@ function getGrade(word) {
   const grades = chars.map((x) => {
     if (x in kanjiGrade) {
       return kanjiGrade[x];
-    } else if (/[\u4E00-\u9FFF]/.test(x)) {
+    } else if (/[\u4E00-\u9FFF々]/.test(x)) {
       return 10;
     } else {
       return 0;
@@ -110,7 +110,7 @@ async function parseLemma() {
       if (lemma in sudachiDict === false) continue;
       if (lemma in inappropriateWordsJa) continue;
       if (lemma.length == 1) continue; // 一文字の語彙は無視
-      if (!/^[\u4E00-\u9FFF ]+$/.test(lemma)) continue; // 数字記号ひらカナは無視
+      if (!/^[\u4E00-\u9FFF々 ]+$/.test(lemma)) continue; // 数字記号ひらカナは無視
       const count = parseInt(arr.slice(-1));
       if (i == 1) {
         const parsed = await mecab.parse(lemma);
