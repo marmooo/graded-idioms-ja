@@ -1,5 +1,4 @@
 import { readLines } from "https://deno.land/std/io/mod.ts";
-import { MeCab } from "https://deno.land/x/deno_mecab/mod.ts";
 
 const w1_ = Array.from(
   "一右雨円王音下火花貝学気九休玉金空月犬見五口校左三山子四糸字耳七車手十出女小上森人水正生青夕石赤千川先早草足村大男竹中虫町天田土二日入年白八百文木本名目立力林六",
@@ -67,7 +66,6 @@ async function loadInappropriateWordsJa() {
 }
 
 async function loadSudachiFilter() {
-  const filter = {};
   const dict = {};
   const paths = [
     "SudachiDict/src/main/text/small_lex.csv",
@@ -83,19 +81,20 @@ async function loadSudachiFilter() {
       const pos1 = arr[5];
       const pos2 = arr[6];
       const abc = arr[14];
-      if (pos1 == "補助記号" || pos2 == "固有名詞" || abc == "C") {
-        filter[lemma] = true;
-      } else {
-        dict[lemma] = true;
-      }
+      if (pos1 == "補助記号") continue;
+      if (pos1 == "接頭辞") continue;
+      if (pos1 == "接尾辞") continue;
+      if (pos2 == "固有名詞") continue;
+      if (abc == "C") continue;
+      dict[lemma] = true;
     }
   }
-  return [filter, dict];
+  return dict;
 }
 
 async function parseLemma() {
   const inappropriateWordsJa = await loadInappropriateWordsJa();
-  const [sudachiFilter, sudachiDict] = await loadSudachiFilter();
+  const sudachiFilter = await loadSudachiFilter();
 
   const dict = {};
   for (let i = 1; i <= 7; i++) {
@@ -106,17 +105,11 @@ async function parseLemma() {
       if (!line) continue;
       const arr = line.split(/\s/);
       const lemma = arr.slice(0, -1).join("");
-      if (lemma in sudachiFilter) continue;
-      if (lemma in sudachiDict === false) continue;
+      if (lemma in sudachiFilter === false) continue;
       if (lemma in inappropriateWordsJa) continue;
       if (lemma.length == 1) continue; // 一文字の語彙は無視
       if (!/^[一-龠々 ]+$/.test(lemma)) continue; // 数字記号ひらカナは無視
       const count = parseInt(arr.slice(-1));
-      if (i == 1) {
-        const parsed = await mecab.parse(lemma);
-        if (parsed.length != 1) continue;
-        if (parsed[0].featureDetails[0] == "固有名詞") continue;
-      }
       if (lemma in dict) {
         dict[lemma] += count;
       } else {
@@ -146,7 +139,6 @@ function splitGrade(arr) {
 }
 
 const outDir = "dist";
-const mecab = new MeCab(["mecab"]);
 const result = await parseLemma();
 Deno.writeTextFile(
   `${outDir}/all.csv`,

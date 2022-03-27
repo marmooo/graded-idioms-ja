@@ -1,5 +1,5 @@
 import { readLines } from "https://deno.land/std/io/mod.ts";
-import * as dejs from "https://deno.land/x/dejs@0.9.3/mod.ts";
+import * as dejs from "https://deno.land/x/dejs@0.10.2/mod.ts";
 
 const fileNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 const dirNames = [
