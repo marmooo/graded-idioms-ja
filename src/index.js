@@ -1,3 +1,18 @@
+const dirNames = [
+  "ひらがな",
+  "カタカナ",
+  "小1",
+  "小2",
+  "小3",
+  "小4",
+  "小5",
+  "小6",
+  "中2",
+  "中3",
+  "常用",
+  "常用外",
+];
+
 function loadConfig() {
   if (localStorage.getItem("darkMode") == 1) {
     document.documentElement.dataset.theme = "dark";
@@ -14,5 +29,11 @@ function toggleDarkMode() {
   }
 }
 
+function changeGrade() {
+  const dir = dirNames[this.selectedIndex];
+  location.href = `/graded-idioms-ja/${dir}/`;
+}
+
 loadConfig();
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
+document.getElementById("gradeOption").onchange = changeGrade;
