@@ -66,7 +66,7 @@ function toSection(title, words) {
     return `
       <div class="card">
         <div class="card-header">${title}</div>
-        <div class="card-body">
+        <div class="card-body notranslate">
           ${section}
         </div>
       </div>
