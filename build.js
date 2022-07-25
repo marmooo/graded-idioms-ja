@@ -78,9 +78,11 @@ async function loadSudachiFilter() {
       if (!line) continue;
       const arr = line.split(",");
       const lemma = arr[0];
+      const leftId = arr[1];
       const pos1 = arr[5];
       const pos2 = arr[6];
       const abc = arr[14];
+      if (leftId == "-1") continue;
       if (pos1 == "補助記号") continue;
       if (pos1 == "接頭辞") continue;
       if (pos1 == "接尾辞") continue;
