@@ -1,5 +1,5 @@
 import { readLines } from "https://deno.land/std/io/mod.ts";
-import * as dejs from "https://deno.land/x/dejs@0.10.2/mod.ts";
+import ejs from "https://esm.sh/ejs@3.1.8";
 
 const fileNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 const dirNames = [
@@ -102,7 +102,7 @@ for (let i = 0; i < dirNames.length; i++) {
   }
   const dir = "src/" + dirNames[i];
   Deno.mkdirSync(dir, { recursive: true });
-  const html = await dejs.renderToString(template, {
+  const html = ejs.render(template, {
     words: words,
     grade: fileNames[i],
     gradeName: gradeNames[i],
