@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<%= gradeName %>までの漢字で構成される熟語の一覧です。">
-    <title><%= gradeName %> | 熟語一覧 (66,451)</title>
+    <title><%= gradeName %> | 熟語一覧 (<%= num %>)</title>
     <meta property="og:title" content="<%= gradeName %> | 熟語一覧 (66,451)">
     <meta property="og:site_name" content="熟語一覧 (66,451)">
     <meta property="og:description" content="<%= gradeName %>までの漢字で構成される熟語の一覧です。">
@@ -36,8 +36,8 @@
       <nav class="navbar navbar-expand navbar-light">
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/graded-idioms-ja/">
-            <img alt="熟語一覧 (66,451)" src="/graded-idioms-ja/favicon/favicon.svg" width="32" height="32">
-            熟語一覧 <small>(66,451)</small>
+            <img alt="熟語一覧 (<%= num %>)" src="/graded-idioms-ja/favicon/favicon.svg" width="32" height="32">
+            熟語一覧 <small>(<%= num %>)</small>
           </a>
           <div class="navbar-nav">
             <select id="gradeOption" class="form-select form-select-sm" aria-label="学年">

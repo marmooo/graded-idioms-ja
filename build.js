@@ -33,7 +33,7 @@ const w9_ = Array.from(
 const gradeByKanjis = [[], w1_, w2_, w3_, w4_, w5_, w6_, w7_, w8_, w9_];
 const kanjiGrade = {};
 for (let level = 1; level < gradeByKanjis.length; level++) {
-  gradeByKanjis[level].forEach(kanji => {
+  gradeByKanjis[level].forEach((kanji) => {
     kanjiGrade[kanji] = level;
   });
 }
@@ -43,7 +43,7 @@ function getGrade(word) {
   const grades = chars.map((x) => {
     if (x in kanjiGrade) {
       return kanjiGrade[x];
-    } else if (/[一-龠々]/.test(x)) {
+    } else if (/[\u4E00-\u9FFF々]/.test(x)) {
       return 10;
     } else {
       return 0;
@@ -110,7 +110,7 @@ async function parseLemma() {
       if (lemma in sudachiFilter === false) continue;
       if (lemma in inappropriateWordsJa) continue;
       if (lemma.length == 1) continue; // 一文字の語彙は無視
-      if (!/^[一-龠々 ]+$/.test(lemma)) continue; // 数字記号ひらカナは無視
+      if (!/^[\u4E00-\u9FFF々]+$/.test(lemma)) continue; // 数字記号ひらカナは無視
       const count = parseInt(arr.slice(-1));
       if (lemma in dict) {
         dict[lemma] += count;
@@ -119,12 +119,7 @@ async function parseLemma() {
       }
     }
   }
-  const arr = Object.entries(dict);
-  arr.sort(function (a, b) {
-    if (a[1] < b[1]) return 1;
-    if (a[1] > b[1]) return -1;
-    return 0;
-  });
+  const arr = Object.entries(dict).sort((a, b) => b[1] - a[1]);
   return arr;
 }
 
