@@ -3,11 +3,11 @@
   <head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<%= gradeName %>までの漢字で構成される熟語の一覧です。">
-    <title><%= gradeName %> | 熟語一覧 (<%= num %>)</title>
-    <meta property="og:title" content="<%= gradeName %> | 熟語一覧 (66,451)">
+    <meta name="description" content="<%= it.gradeName %>までの漢字で構成される熟語の一覧です。">
+    <title><%= it.gradeName %> | 熟語一覧 (<%= it.num %>)</title>
+    <meta property="og:title" content="<%= it.gradeName %> | 熟語一覧 (66,451)">
     <meta property="og:site_name" content="熟語一覧 (66,451)">
-    <meta property="og:description" content="<%= gradeName %>までの漢字で構成される熟語の一覧です。">
+    <meta property="og:description" content="<%= it.gradeName %>までの漢字で構成される熟語の一覧です。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://marmooo.github.io/graded-idioms-ja/">
     <meta property="og:image" content="https://marmooo.github.io/graded-idioms-ja/favicon/apple-touch-icon.png">
@@ -36,21 +36,21 @@
       <nav class="navbar navbar-expand navbar-light">
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/graded-idioms-ja/">
-            <img alt="熟語一覧 (<%= num %>)" src="/graded-idioms-ja/favicon/favicon.svg" width="32" height="32">
-            熟語一覧 <small>(<%= num %>)</small>
+            <img alt="熟語一覧 (<%= it.num %>)" src="/graded-idioms-ja/favicon/favicon.svg" width="32" height="32">
+            熟語一覧 <small>(<%= it.num %>)</small>
           </a>
           <div class="navbar-nav">
             <select id="gradeOption" class="form-select form-select-sm" aria-label="学年">
-              <option <%= selected(grade, "1") %>>小1</option>
-              <option <%= selected(grade, "2") %>>小2</option>
-              <option <%= selected(grade, "3") %>>小3</option>
-              <option <%= selected(grade, "4") %>>小4</option>
-              <option <%= selected(grade, "5") %>>小5</option>
-              <option <%= selected(grade, "6") %>>小6</option>
-              <option <%= selected(grade, "7") %>>中1/2</option>
-              <option <%= selected(grade, "8") %>>中3</option>
-              <option <%= selected(grade, "9") %>>常用</option>
-              <option <%= selected(grade, "10") %>>常用外</option>
+              <option <%= it.selected(it.grade, "1") %>>小1</option>
+              <option <%= it.selected(it.grade, "2") %>>小2</option>
+              <option <%= it.selected(it.grade, "3") %>>小3</option>
+              <option <%= it.selected(it.grade, "4") %>>小4</option>
+              <option <%= it.selected(it.grade, "5") %>>小5</option>
+              <option <%= it.selected(it.grade, "6") %>>小6</option>
+              <option <%= it.selected(it.grade, "7") %>>中1/2</option>
+              <option <%= it.selected(it.grade, "8") %>>中3</option>
+              <option <%= it.selected(it.grade, "9") %>>常用</option>
+              <option <%= it.selected(it.grade, "10") %>>常用外</option>
             </select>
             <button title="ダークモード切替" id="toggleDarkMode" class="fs-4 btn p-0 ms-1" type="button">🌓</button>
           </div>
@@ -61,8 +61,8 @@
       <noscript>
         <div class="alert alert-warning">JavaScript を ON にしてください</div>
       </noscript>
-      <p><%= gradeName %>までの漢字で構成される熟語の一覧です。</p>
-      <%- toContent(words) %>
+      <p><%= it.gradeName %>までの漢字で構成される熟語の一覧です。</p>
+      <%~ it.content %>
     </main>
     <footer class="pt-4 alert text-center">
       <div>

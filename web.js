@@ -1,4 +1,4 @@
-import ejs from "https://esm.sh/ejs@3.1.8";
+import * as Eta from "npm:eta@2.2.0";
 
 const fileNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 const dirNames = [
@@ -90,7 +90,7 @@ function selected(grade, index) {
   }
 }
 
-const template = Deno.readTextFileSync("page.ejs");
+const template = Deno.readTextFileSync("page.eta");
 const allIdioms = Deno.readTextFileSync(`dist/all.csv`);
 const num = allIdioms.trimEnd().split("\n").length;
 for (let i = 0; i < dirNames.length; i++) {
@@ -101,12 +101,11 @@ for (let i = 0; i < dirNames.length; i++) {
   });
   const dir = "src/" + dirNames[i];
   Deno.mkdirSync(dir, { recursive: true });
-  const html = ejs.render(template, {
+  const html = Eta.render(template, {
     num: num.toLocaleString("ja-JP"),
-    words: words,
     grade: fileNames[i],
     gradeName: gradeNames[i],
-    toContent: toContent,
+    content: toContent(words),
     selected: selected,
   });
   Deno.writeTextFileSync(dir + "/index.html", html);
