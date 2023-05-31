@@ -29,8 +29,8 @@ function toggleDarkMode() {
   }
 }
 
-function changeGrade() {
-  const dir = dirNames[this.selectedIndex];
+function changeGrade(event) {
+  const dir = dirNames[evnet.target.selectedIndex];
   location.href = `/graded-idioms-ja/${dir}/`;
 }
 
