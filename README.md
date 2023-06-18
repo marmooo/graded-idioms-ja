@@ -16,8 +16,3 @@
 ## License
 
 CC BY 4.0
-
-## Attribution
-
-- [SudachiDict](https://github.com/WorksApplications/SudachiDict) is licensed
-  under the [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0).
