@@ -30,7 +30,7 @@ function toggleDarkMode() {
 }
 
 function changeGrade(event) {
-  const dir = dirNames[evnet.target.selectedIndex];
+  const dir = dirNames[event.target.selectedIndex];
   location.href = `/graded-idioms-ja/${dir}/`;
 }
 
