@@ -35,7 +35,7 @@
       <nav class="navbar navbar-expand navbar-light">
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/graded-idioms-ja/">
-            <img class="favicon" alt="熟語一覧 (<%= it.num %>)" src="/graded-idioms-ja/favicon/favicon.svg" width="32" height="32">
+            <img class="favicon" alt="" src="/graded-idioms-ja/favicon/favicon.svg" width="32" height="32">
             熟語一覧 <small>(<%= it.num %>)</small>
           </a>
           <div class="navbar-nav">
