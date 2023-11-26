@@ -9,8 +9,10 @@ const dirNames = [
   "小6",
   "中2",
   "中3",
+  "高校",
   "常用",
-  "常用外",
+  "準1級",
+  "1級",
 ];
 
 function loadConfig() {

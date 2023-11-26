@@ -1,6 +1,6 @@
 import { Eta } from "https://deno.land/x/eta@v3.1.1/src/index.ts";
 
-const fileNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+const fileNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
 const dirNames = [
   "小1",
   "小2",
@@ -10,8 +10,10 @@ const dirNames = [
   "小6",
   "中2",
   "中3",
+  "高校",
   "常用",
-  "常用外",
+  "準1級",
+  "1級",
 ];
 const gradeNames = [
   "小学1年生",
@@ -22,8 +24,10 @@ const gradeNames = [
   "小学6年生",
   "中学1〜2年生",
   "中学3年生",
+  "高校生",
   "常用漢字",
-  "常用外漢字",
+  "漢検準1級",
+  "漢検1級",
 ];
 
 function toContent(words) {

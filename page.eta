@@ -48,8 +48,10 @@
               <option <%= it.selected(it.grade, "6") %>>小6</option>
               <option <%= it.selected(it.grade, "7") %>>中1/2</option>
               <option <%= it.selected(it.grade, "8") %>>中3</option>
-              <option <%= it.selected(it.grade, "9") %>>常用</option>
-              <option <%= it.selected(it.grade, "10") %>>常用外</option>
+              <option <%= it.selected(it.grade, "9") %>>高校</option>
+              <option <%= it.selected(it.grade, "10") %>>常用</option>
+              <option <%= it.selected(it.grade, "11") %>>準1級</option>
+              <option <%= it.selected(it.grade, "12") %>>1級</option>
             </select>
             <button title="ダークモード切替" id="toggleDarkMode" class="fs-4 btn p-0 ms-1" type="button">🌓</button>
           </div>
