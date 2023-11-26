@@ -1,5 +1,5 @@
 import { readLines } from "https://deno.land/std/io/mod.ts";
-import { Kanji, JKAT } from "npm:@marmooo/kanji@0.0.2";
+import { JKAT, Kanji } from "npm:@marmooo/kanji@0.0.2";
 
 async function loadInappropriateWordsJa() {
   const dict = {};
@@ -44,8 +44,7 @@ async function loadSudachiFilter() {
 }
 
 async function parseLemma() {
-  const filterRegexp =
-    /^[\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}々]+$/u;
+  const filterRegexp = /^[\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}]+$/u;
   const inappropriateWordsJa = await loadInappropriateWordsJa();
   const sudachiFilter = await loadSudachiFilter();
 
@@ -76,11 +75,13 @@ async function parseLemma() {
 
 function splitByGrade(arr) {
   const jkat = new Kanji(JKAT);
-  const graded = new Array(JKAT.length + 1);
-  for (let grade = 0; grade <= JKAT.length + 1; grade++) {
+  const graded = new Array(JKAT.length);
+  for (let grade = 0; grade < JKAT.length; grade++) {
     graded[grade] = [];
   }
   for (const [lemma, count] of arr) {
+    const grades = Array.from(lemma).map((kanji) => jkat.getGrade(kanji));
+    if (grades.includes(-1)) continue;
     const grade = jkat.getGrade(lemma);
     graded[grade].push([lemma, count]);
   }
