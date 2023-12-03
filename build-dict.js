@@ -60,6 +60,9 @@ async function parseLemma() {
       if (lemma in inappropriateWordsJa) continue;
       if (lemma.length == 1) continue; // 一文字の語彙は無視
       if (!filterRegexp.test(lemma)) continue; // 数字記号ひらカナは無視
+      const kanjis = lemma.replaceAll(/[ぁ-ゔァ-ヴー]/g, "");
+      const grades = Array.from(kanjis).map((kanji) => jkat.getGrade(kanji));
+      if (grades.includes(-1)) continue; // サポート外漢字を含む場合は無視
       const count = parseInt(arr.slice(-1));
       if (lemma in dict) {
         dict[lemma] += count;
@@ -73,14 +76,11 @@ async function parseLemma() {
 }
 
 function splitByGrade(arr) {
-  const jkat = new Kanji(JKAT);
   const graded = new Array(JKAT.length);
   for (let grade = 0; grade < JKAT.length; grade++) {
     graded[grade] = [];
   }
   for (const [lemma, count] of arr) {
-    const grades = Array.from(lemma).map((kanji) => jkat.getGrade(kanji));
-    if (grades.includes(-1)) continue;
     const grade = jkat.getGrade(lemma);
     graded[grade].push([lemma, count]);
   }
@@ -88,6 +88,7 @@ function splitByGrade(arr) {
 }
 
 const outDir = "dist";
+const jkat = new Kanji(JKAT);
 const result = await parseLemma();
 Deno.writeTextFile(
   `${outDir}/all.csv`,
