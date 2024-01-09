@@ -43,7 +43,7 @@ async function loadSudachiFilter() {
 }
 
 async function parseLemma() {
-  const filterRegexp = /^[\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}]+$/u;
+  const filterRegexp = /^[\u3400-\u9FFF\uF900-\uFAFF\u{20000}-\u{37FFF}]+$/u;
   const inappropriateWordsJa = await loadInappropriateWordsJa();
   const sudachiFilter = await loadSudachiFilter();
 
