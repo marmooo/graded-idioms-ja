@@ -1,6 +1,20 @@
 import { Eta } from "https://deno.land/x/eta@v3.1.1/src/index.ts";
 
-const fileNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+const fileNames = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+];
 const dirNames = [
   "小1",
   "小2",
@@ -32,10 +46,10 @@ const gradeNames = [
 
 function toContent(words) {
   let html = "";
-  html += toSection("二字熟語", words.filter(w => w.length == 2));
-  html += toSection("三字熟語", words.filter(w => w.length == 3));
-  html += toSection("四字熟語", words.filter(w => w.length == 4));
-  html += toSection("五字以上の熟語", words.filter(w => w.length >= 5));
+  html += toSection("二字熟語", words.filter((w) => w.length == 2));
+  html += toSection("三字熟語", words.filter((w) => w.length == 3));
+  html += toSection("四字熟語", words.filter((w) => w.length == 4));
+  html += toSection("五字以上の熟語", words.filter((w) => w.length >= 5));
   return html;
 }
 
@@ -57,8 +71,8 @@ function toSection(title, words) {
       const to = i + n;
       const wordLinks = words.slice(from, to)
         .map((word) => toLink(word)).join("\n");
-      let padding = ""
-      if (i != 0) { padding = 'class="pt-3"'; }
+      let padding = "";
+      if (i != 0) padding = 'class="pt-3"';
       section += `
         <h6 ${padding}>${from + 1}〜${to}</h6>
         <div>
