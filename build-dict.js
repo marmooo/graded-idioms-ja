@@ -1,11 +1,16 @@
-import { readLines } from "https://deno.land/std/io/mod.ts";
+import { TextLineStream } from "jsr:@std/streams/text-line-stream";
 import { JKAT, Kanji } from "npm:@marmooo/kanji@0.0.8";
+
+function getLineStream(file) {
+  return file.readable
+    .pipeThrough(new TextDecoderStream())
+    .pipeThrough(new TextLineStream());
+}
 
 async function loadInappropriateWordsJa() {
   const dict = {};
-  const fileReader = await Deno.open("inappropriate-words-ja/Sexual.txt");
-  for await (const word of readLines(fileReader)) {
-    if (!word) continue;
+  const file = await Deno.open("inappropriate-words-ja/Sexual.txt");
+  for await (const word of getLineStream(file)) {
     if (!["イク", "催眠"].includes(word)) {
       dict[word] = true;
     }
@@ -21,9 +26,8 @@ async function loadSudachiFilter() {
     "SudachiDict/src/main/text/core_lex.csv",
   ];
   for (const path of paths) {
-    const fileReader = await Deno.open(path);
-    for await (const line of readLines(fileReader)) {
-      if (!line) continue;
+    const file = await Deno.open(path);
+    for await (const line of getLineStream(file)) {
       const arr = line.split(",");
       const lemma = arr[0];
       const leftId = arr[1];
@@ -49,11 +53,10 @@ async function parseLemma() {
 
   const dict = {};
   for (let i = 1; i <= 7; i++) {
-    const fileReader = await Deno.open(
+    const file = await Deno.open(
       `nwc2010-ngrams/word/over999/${i}gms/${i}gm-0000`,
     );
-    for await (const line of readLines(fileReader)) {
-      if (!line) continue;
+    for await (const line of getLineStream(file)) {
       const arr = line.split(/\s/);
       const lemma = arr.slice(0, -1).join("");
       if (lemma in sudachiFilter === false) continue;
