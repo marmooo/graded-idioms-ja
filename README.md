@@ -10,7 +10,7 @@
 - install
   [MosasoM/inappropriate-words-ja](https://github.com/MosasoM/inappropriate-words-ja)
   licensed under the MIT
-- `deno run --allow-read --allow-write build-dict.js`
+- `deno run -RW build-dict.js`
 - `bash build.sh`
 
 ## License
