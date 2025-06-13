@@ -1,5 +1,5 @@
 import { TextLineStream } from "jsr:@std/streams/text-line-stream";
-import { JKAT, Kanji } from "npm:@marmooo/kanji@0.0.8";
+import { JKAT, Kanji } from "npm:@marmooo/kanji@0.1.1";
 
 function getLineStream(file) {
   return file.readable
